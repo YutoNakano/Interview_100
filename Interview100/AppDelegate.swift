@@ -13,10 +13,18 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    let topViewController = ViewController()
+//    let questionViewController = QuestionViewController()
+    var navigationController = UINavigationController()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        let presenter = QuestionPresenter(view: questionViewController)
+//        topViewController.inject(presenter: presenter)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        navigationController = UINavigationController(rootViewController: topViewController)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
         FirebaseApp.configure()
         return true
     }
