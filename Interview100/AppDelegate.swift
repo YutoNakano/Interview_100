@@ -13,7 +13,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let topViewController = ViewController()
+    let topViewController = TopViewController()
 //    let questionViewController = QuestionViewController()
     var navigationController = UINavigationController()
     
