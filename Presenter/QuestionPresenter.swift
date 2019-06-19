@@ -16,6 +16,7 @@ protocol QuestionPresenterInput {
 
 protocol QuestionPresenterOutput: AnyObject {
     func giveQuestionText(questionText: String)
+    func giveQuextionIndex() -> Int
 }
 
 
@@ -38,7 +39,7 @@ extension QuestionPresenter: QuestionPresenterInput {
     func fetchQuestionData(){
         let db = Firestore.firestore()
         db.collection("Questions")
-            .document(generateRandomNumber().description)
+            .document(generateNextIndex().description)
             .getDocument { document, error in
                 if let err = error {
                     print(err)
@@ -52,8 +53,8 @@ extension QuestionPresenter: QuestionPresenterInput {
 }
 
 extension QuestionPresenter {
-    func generateRandomNumber() -> Int {
-        let number = Int.random(in: 0..<10)
-            return number
+    func generateNextIndex() -> Int {
+        guard let questionIndex = view?.giveQuextionIndex() else { return 1 }
+            return questionIndex + 1
     }
 }

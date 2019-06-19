@@ -27,7 +27,7 @@ final class QuestionViewController: ViewController {
     }()
     
     private var presenter: QuestionPresenterInput?
-    var questionNumber: Int = 1
+    var questionNumber: Int?
     
     func inject(presenter: QuestionPresenterInput) {
         self.presenter = presenter
@@ -50,7 +50,7 @@ final class QuestionViewController: ViewController {
         questionContentView.viewController = self
         selectAnserView.viewController = self
         selectAnserView.delegate = self
-//        questionContentView.questionNumber = questionNumber
+        questionNumber = selectAnserView.questionCount
         reload()
     }
     
@@ -79,6 +79,11 @@ extension QuestionViewController {
 }
 
 extension QuestionViewController: QuestionPresenterOutput {
+    func giveQuextionIndex() -> Int {
+        guard let number = questionNumber else { return 0 }
+        return number
+    }
+    
     func giveQuestionText(questionText: String) {
         questionContentView.questionTitle = questionText
     }

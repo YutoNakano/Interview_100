@@ -87,6 +87,7 @@ PODS:
   - gRPC-Core/Interface (1.21.0)
   - Kingfisher (5.6.0)
   - leveldb-library (1.20)
+  - LTMorphingLabel (0.7.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -99,6 +100,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Firestore
   - Kingfisher
+  - LTMorphingLabel
   - SnapKit
 
 SPEC REPOS:
@@ -116,6 +118,7 @@ SPEC REPOS:
     - gRPC-Core
     - Kingfisher
     - leveldb-library
+    - LTMorphingLabel
     - nanopb
     - Protobuf
     - SnapKit
@@ -134,10 +137,11 @@ SPEC CHECKSUMS:
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  LTMorphingLabel: 22147fb1ec2b0306537ccc348b36ea8617179b03
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
 
-PODFILE CHECKSUM: 7601c41c7a0a016cbf40cbb2357418263b896da1
+PODFILE CHECKSUM: f7b56d074e1a9b922dc13a692c3f433e96014d9f
 
 COCOAPODS: 1.7.2

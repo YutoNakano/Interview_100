@@ -14,7 +14,7 @@ public class ViewController: UIViewController {
         setupNavigation()
         setupView()
         makeConstraints()
-        navigationController?.isNavigationBarHidden = true
+//        navigationController?.isNavigationBarHidden = 
     }
     
     public func setupNavigation() { } // NavigationController の設定

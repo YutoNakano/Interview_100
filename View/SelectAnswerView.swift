@@ -52,8 +52,9 @@ final class SelectAnserView: UIView {
     weak var delegate: SelectAnserViewDelegate?
     var timer: Timer?
     
+    let resultViewController = ResultViewController()
     private var limitNumber: Int = 10
-    private var questionCount: Int = 1
+    var questionCount: Int = 0
     var timeCount: Int = 0
     
     override init(frame: CGRect) {
@@ -94,8 +95,9 @@ extension SelectAnserView {
         timer?.invalidate()
         questionCount += 1
         delegate?.getQuestionNumber(number: questionCount)
-        guard questionCount <= limitNumber else {
+        guard questionCount < limitNumber else {
             timer?.invalidate()
+            viewController?.navigationController?.pushViewController(resultViewController, animated: true)
          return
         }
         viewController?.reload()

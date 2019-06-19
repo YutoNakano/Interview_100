@@ -8,14 +8,16 @@
 
 import UIKit
 import SnapKit
+import LTMorphingLabel
 
 final class TopViewController: ViewController {
     
     let questionViewController = QuestionViewController()
     
-    lazy var titleLabel: UILabel = {
-        let v = UILabel()
+    lazy var titleLabel: LTMorphingLabel = {
+        let v = LTMorphingLabel()
         v.numberOfLines = 0
+        v.morphingEffect = .scale
         v.text = "頻出!!面接質問帳"
         v.font = UIFont(name: "GillSans-UltraBold", size: 36)
         view.addSubview(v)

@@ -8,6 +8,7 @@
 
 import SnapKit
 import UIKit
+import LTMorphingLabel
 
 final class QuestionContentView: UIView {
     
@@ -19,10 +20,11 @@ final class QuestionContentView: UIView {
         }
     }
     
-    lazy var questionNumberLabel: UILabel = {
-        let v = UILabel()
+    lazy var questionNumberLabel: LTMorphingLabel = {
+        let v = LTMorphingLabel()
         v.numberOfLines = 0
         v.font = UIFont(name: "GillSans-UltraBold", size: 22)
+        v.morphingEffect = .scale
         addSubview(v)
         return v
     }()
@@ -30,8 +32,11 @@ final class QuestionContentView: UIView {
     lazy var questionTitleLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
-        v.text = "お腹すいてますか?"
+        v.text = "yyyyyyyyyy"
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
+//        v.morphingEffect = .scale
+        v.lineBreakMode = .byWordWrapping
+        v.sizeToFit()
         addSubview(v)
         return v
     }()
@@ -52,7 +57,8 @@ final class QuestionContentView: UIView {
     }
     
     func setModel() {
-        guard let number = viewController?.questionNumber else { return }
+        guard var number = viewController?.questionNumber else { return }
+        number += 1
         questionNumberLabel.text = "質問\(number.description)"
         guard let title = questionTitle else { return }
         questionTitleLabel.text = title
@@ -65,7 +71,7 @@ final class QuestionContentView: UIView {
             make.left.equalTo(18)
         }
         questionTitleLabel.snp.makeConstraints { make in
-            make.width.equalTo(screenWidth - 32)
+            make.width.equalTo(screenWidth - 90)
             make.centerX.equalToSuperview()
             make.top.equalTo(questionNumberLabel.snp.bottom).offset(20)
         }
