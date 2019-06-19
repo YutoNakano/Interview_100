@@ -5,6 +5,7 @@ target 'Interview100' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 pod 'Firebase/Core'
+pod 'Firebase/Firestore'
 pod 'SnapKit'
 pod 'Kingfisher'
   # Pods for Interview100
