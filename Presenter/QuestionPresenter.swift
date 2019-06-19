@@ -53,7 +53,7 @@ extension QuestionPresenter: QuestionPresenterInput {
 
 extension QuestionPresenter {
     func generateRandomNumber() -> Int {
-        let number = Int.random(in: 0..<4)
+        let number = Int.random(in: 0..<10)
             return number
     }
 }

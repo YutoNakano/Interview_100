@@ -27,7 +27,7 @@ final class QuestionViewController: ViewController {
     }()
     
     private var presenter: QuestionPresenterInput?
-    var questionNumber: Int?
+    var questionNumber: Int = 1
     
     func inject(presenter: QuestionPresenterInput) {
         self.presenter = presenter
@@ -50,21 +50,22 @@ final class QuestionViewController: ViewController {
         questionContentView.viewController = self
         selectAnserView.viewController = self
         selectAnserView.delegate = self
+//        questionContentView.questionNumber = questionNumber
         reload()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func makeConstraints() {
         questionContentView.snp.makeConstraints { make in
+            make.height.equalTo(350)
             make.top.left.right.equalToSuperview()
             make.bottom.equalTo(selectAnserView.snp.top)
         }
         selectAnserView.snp.makeConstraints { make in
-            make.height.equalTo(100)
             make.top.equalTo(questionContentView.snp.bottom)
             make.bottom.left.right.equalToSuperview()
         }

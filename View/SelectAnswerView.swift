@@ -15,6 +15,14 @@ protocol SelectAnserViewDelegate: class {
 }
 
 final class SelectAnserView: UIView {
+    
+    lazy var timeLabel: UILabel = {
+        let v = UILabel()
+        v.numberOfLines = 0
+        v.font = UIFont(name: "GillSans-UltraBold", size: 30)
+        addSubview(v)
+        return v
+    }()
 
     lazy var goButton: UIButton = {
         let v = UIButton()
@@ -42,9 +50,11 @@ final class SelectAnserView: UIView {
 
     var viewController: QuestionViewController?
     weak var delegate: SelectAnserViewDelegate?
+    var timer: Timer?
     
     private var limitNumber: Int = 10
-    private var count: Int = 0
+    private var questionCount: Int = 1
+    var timeCount: Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -61,6 +71,10 @@ final class SelectAnserView: UIView {
     }
 
     func makeConstraints() {
+        timeLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
         goButton.snp.makeConstraints { make in
             make.width.equalTo(140)
             make.height.equalTo(50)
@@ -77,15 +91,33 @@ final class SelectAnserView: UIView {
 
 extension SelectAnserView {
     @objc func goButtonTapped() {
-        count += 1
-        delegate?.getQuestionNumber(number: count)
-        guard count <= limitNumber else {
+        timer?.invalidate()
+        questionCount += 1
+        delegate?.getQuestionNumber(number: questionCount)
+        guard questionCount <= limitNumber else {
+            timer?.invalidate()
          return
         }
         viewController?.reload()
+        startTimer()
     }
     @objc func backButtonTapped() {
-        count = 0
+        timer?.invalidate()
+        questionCount = 0
         viewController?.navigationController?.popViewController(animated: true)
+        
+    }
+    func startTimer() {
+//        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(onUpdate(timer:)), userInfo: nil, repeats: true)
+    }
+    @objc func onUpdate(timer: Timer) {
+        timeCount += 1
+//        let now = Date()
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "mm:ss.SSS"
+//        print(formatter.string(from: now))
+////        let str = String(format: "%.0f", questionCount)
+//        timeLabel.text = questionCount.description
+//        print(questionCount)
     }
 }

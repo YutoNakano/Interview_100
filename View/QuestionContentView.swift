@@ -13,31 +13,28 @@ final class QuestionContentView: UIView {
     
     let screenWidth = UIScreen.main.bounds.width
     var viewController: QuestionViewController?
-    var id: Int?
     var questionTitle: String? {
         didSet {
             self.setModel()
         }
     }
     
-    lazy var titleLabel: UILabel = {
+    lazy var questionNumberLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
-        v.text = "質問99:お腹すいてますか?"
+        v.font = UIFont(name: "GillSans-UltraBold", size: 22)
+        addSubview(v)
+        return v
+    }()
+    
+    lazy var questionTitleLabel: UILabel = {
+        let v = UILabel()
+        v.numberOfLines = 0
+        v.text = "お腹すいてますか?"
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
         addSubview(v)
         return v
     }()
-    
-    lazy var commentLabel: UILabel = {
-        let v = UILabel()
-        v.numberOfLines = 0
-        v.font = UIFont(name: "GillSans", size: 22)
-        addSubview(v)
-        return v
-    }()
-    
-    var questionNumber: Int?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,27 +52,23 @@ final class QuestionContentView: UIView {
     }
     
     func setModel() {
-//        guard let numberText = questionNumber?.description else { return }
-        guard let title = questionTitle else { return }
         guard let number = viewController?.questionNumber else { return }
-        titleLabel.text = "質問\(number): \n\(title)"
+        questionNumberLabel.text = "質問\(number.description)"
+        guard let title = questionTitle else { return }
+        questionTitleLabel.text = title
     }
     
     func makeConstraints() {
-        titleLabel.snp.makeConstraints { make in
+        questionNumberLabel.snp.makeConstraints { make in
+            make.top.equalTo(100)
+            make.width.equalTo(100)
+            make.left.equalTo(18)
+        }
+        questionTitleLabel.snp.makeConstraints { make in
             make.width.equalTo(screenWidth - 32)
             make.centerX.equalToSuperview()
-            make.top.equalTo(140)
+            make.top.equalTo(questionNumberLabel.snp.bottom).offset(20)
         }
-        commentLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
-//        imageView.snp.makeConstraints { make in
-//            make.size.equalTo(250)
-//            make.centerX.equalToSuperview()
-//            make.top.equalTo(commentLabel.snp.bottom).offset(60)
-//        }
     }
 }
 
