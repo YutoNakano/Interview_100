@@ -34,13 +34,6 @@ final class TopViewController: ViewController {
         return v
     }()
     
-    private var presenter: QuestionPresenterInput?
-    
-    
-    func inject(presenter: QuestionPresenterInput) {
-        self.presenter = presenter
-    }
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
     }
@@ -58,13 +51,14 @@ final class TopViewController: ViewController {
             make.width.equalTo(200)
             make.height.equalTo(80)
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(50)
+            make.centerY.equalToSuperview().offset(80)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let presenter = QuestionPresenter(view: questionViewController)
+        questionViewController.inject(presenter: presenter)
     }
     
     override func setupView() {
@@ -76,7 +70,6 @@ final class TopViewController: ViewController {
 
 extension TopViewController {
     @objc func startButtonTapped() {
-        presenter?.didTapStartButton()
         navigationController?.pushViewController(questionViewController, animated: true)
     }
 }

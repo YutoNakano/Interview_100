@@ -24,9 +24,10 @@
 		5779487022B9E4C100DC091C /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779486B22B9E4C100DC091C /* TopViewController.swift */; };
 		5779487122B9E4C100DC091C /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779486C22B9E4C100DC091C /* QuestionViewController.swift */; };
 		5779487222B9E4C100DC091C /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779486D22B9E4C100DC091C /* ResultViewController.swift */; };
-		5779487322B9E4C100DC091C /* QuestionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779486E22B9E4C100DC091C /* QuestionTitleView.swift */; };
+		5779487322B9E4C100DC091C /* QuestionContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779486E22B9E4C100DC091C /* QuestionContentView.swift */; };
 		5779487422B9E4C100DC091C /* SelectAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779486F22B9E4C100DC091C /* SelectAnswerView.swift */; };
 		5779487722B9E4D100DC091C /* QuestionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779487622B9E4D100DC091C /* QuestionPresenter.swift */; };
+		5779487922B9E98F00DC091C /* FirestoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779487822B9E98F00DC091C /* FirestoreModel.swift */; };
 		D81D6358DE4C65C7499ACFF1 /* Pods_Interview100.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1670D6BC07E48BDF0FC9E5F4 /* Pods_Interview100.framework */; };
 		FDB741134225CE819F6C3C50 /* Pods_Interview100Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104094385F4642063330EEF5 /* Pods_Interview100Tests.framework */; };
 /* End PBXBuildFile section */
@@ -75,9 +76,10 @@
 		5779486B22B9E4C100DC091C /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		5779486C22B9E4C100DC091C /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		5779486D22B9E4C100DC091C /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
-		5779486E22B9E4C100DC091C /* QuestionTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTitleView.swift; sourceTree = "<group>"; };
+		5779486E22B9E4C100DC091C /* QuestionContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionContentView.swift; sourceTree = "<group>"; };
 		5779486F22B9E4C100DC091C /* SelectAnswerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAnswerView.swift; sourceTree = "<group>"; };
 		5779487622B9E4D100DC091C /* QuestionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPresenter.swift; sourceTree = "<group>"; };
+		5779487822B9E98F00DC091C /* FirestoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreModel.swift; sourceTree = "<group>"; };
 		CC97098D394526C276AB84A9 /* Pods-Interview100.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Interview100.debug.xcconfig"; path = "Target Support Files/Pods-Interview100/Pods-Interview100.debug.xcconfig"; sourceTree = "<group>"; };
 		CE0A9DBF29940631EF6FDC9D /* Pods-Interview100UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Interview100UITests.release.xcconfig"; path = "Target Support Files/Pods-Interview100UITests/Pods-Interview100UITests.release.xcconfig"; sourceTree = "<group>"; };
 		D320B4B93AFD10D1A3E6768D /* Pods_Interview100UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Interview100UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +193,7 @@
 				5779486122B9E49800DC091C /* Extensions.swift */,
 				5779486222B9E49800DC091C /* AppColor.swift */,
 				5779486322B9E49800DC091C /* EnhancedCircle.swift */,
+				5779487822B9E98F00DC091C /* FirestoreModel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -201,7 +204,7 @@
 				5779486B22B9E4C100DC091C /* TopViewController.swift */,
 				5779486C22B9E4C100DC091C /* QuestionViewController.swift */,
 				5779486D22B9E4C100DC091C /* ResultViewController.swift */,
-				5779486E22B9E4C100DC091C /* QuestionTitleView.swift */,
+				5779486E22B9E4C100DC091C /* QuestionContentView.swift */,
 				5779486F22B9E4C100DC091C /* SelectAnswerView.swift */,
 			);
 			path = View;
@@ -452,8 +455,9 @@
 				5779486422B9E49800DC091C /* ViewController.swift in Sources */,
 				5779482E22B9BA0000DC091C /* AppDelegate.swift in Sources */,
 				5779487422B9E4C100DC091C /* SelectAnswerView.swift in Sources */,
+				5779487922B9E98F00DC091C /* FirestoreModel.swift in Sources */,
 				5779487022B9E4C100DC091C /* TopViewController.swift in Sources */,
-				5779487322B9E4C100DC091C /* QuestionTitleView.swift in Sources */,
+				5779487322B9E4C100DC091C /* QuestionContentView.swift in Sources */,
 				5779487222B9E4C100DC091C /* ResultViewController.swift in Sources */,
 				5779486922B9E49800DC091C /* EnhancedCircle.swift in Sources */,
 				5779487722B9E4D100DC091C /* QuestionPresenter.swift in Sources */,

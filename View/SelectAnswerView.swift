@@ -10,29 +10,41 @@ import SnapKit
 import UIKit
 
 
+protocol SelectAnserViewDelegate: class {
+    func getQuestionNumber(number: Int)
+}
+
 final class SelectAnserView: UIView {
 
-    lazy var yesButton: UIButton = {
+    lazy var goButton: UIButton = {
         let v = UIButton()
         v.setTitle("次へ", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
         v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 20)
         v.backgroundColor = UIColor.appColor(.yesPink)
+        v.addTarget(self, action: #selector(goButtonTapped), for: .touchUpInside)
         v.layer.cornerRadius = 15
         addSubview(v)
         return v
     }()
 
-    lazy var noButton: UIButton = {
+    lazy var backButton: UIButton = {
         let v = UIButton()
-        v.setTitle("戻る", for: .normal)
+        v.setTitle("TOPに戻る", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 17)
         v.backgroundColor = UIColor.appColor(.noBlue)
+        v.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         v.layer.cornerRadius = 15
         addSubview(v)
         return v
     }()
+
+    var viewController: QuestionViewController?
+    weak var delegate: SelectAnserViewDelegate?
+    
+    private var limitNumber: Int = 10
+    private var count: Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,16 +61,31 @@ final class SelectAnserView: UIView {
     }
 
     func makeConstraints() {
-        yesButton.snp.makeConstraints { make in
+        goButton.snp.makeConstraints { make in
             make.width.equalTo(140)
             make.height.equalTo(50)
             make.right.bottom.equalToSuperview().offset(-40)
         }
-        noButton.snp.makeConstraints { make in
+        backButton.snp.makeConstraints { make in
             make.width.equalTo(140)
             make.height.equalTo(50)
             make.left.equalToSuperview().offset(40)
             make.bottom.equalToSuperview().offset(-40)
         }
+    }
+}
+
+extension SelectAnserView {
+    @objc func goButtonTapped() {
+        count += 1
+        delegate?.getQuestionNumber(number: count)
+        guard count <= limitNumber else {
+         return
+        }
+        viewController?.reload()
+    }
+    @objc func backButtonTapped() {
+        count = 0
+        viewController?.navigationController?.popViewController(animated: true)
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-
+import FirebaseFirestore
 
 final class QuestionViewController: ViewController {
     
@@ -26,6 +26,21 @@ final class QuestionViewController: ViewController {
         return v
     }()
     
+    private var presenter: QuestionPresenterInput?
+    var questionNumber: Int?
+    
+    func inject(presenter: QuestionPresenterInput) {
+        self.presenter = presenter
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func setupView() {
         view.backgroundColor = UIColor.white
     }
@@ -33,6 +48,9 @@ final class QuestionViewController: ViewController {
     override func loadView() {
         super.loadView()
         questionContentView.viewController = self
+        selectAnserView.viewController = self
+        selectAnserView.delegate = self
+        reload()
     }
     
     override func viewDidLoad() {
@@ -53,22 +71,21 @@ final class QuestionViewController: ViewController {
     }
 }
 
-extension QuestionViewController: QuestionPresenterOutput {
+extension QuestionViewController {
     func reload() {
-//        Session.send(QuestionResponse.SearchRepositories()) { result in
-//            switch result {
-//            case .success(let response):
-//                print(response)
-//                self.questionContentView.question = response
-//                DispatchQueue.main.async {
-//                    self.titleLabel.text = response.title
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//            DispatchQueue.main.async {
-//                self.loadView()
-//                self.viewDidLoad()
-//            }
-        }
+        presenter?.fetchQuestionData()
     }
+}
+
+extension QuestionViewController: QuestionPresenterOutput {
+    func giveQuestionText(questionText: String) {
+        questionContentView.questionTitle = questionText
+    }
+    
+}
+
+extension QuestionViewController: SelectAnserViewDelegate {
+    func getQuestionNumber(number: Int) {
+        questionNumber = number
+    }
+}
