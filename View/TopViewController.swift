@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import LTMorphingLabel
+import Lottie
 
 final class TopViewController: ViewController {
     

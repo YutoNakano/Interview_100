@@ -9,6 +9,7 @@ pod 'Firebase/Firestore'
 pod 'SnapKit'
 pod 'Kingfisher'
 pod 'LTMorphingLabel'
+pod 'lottie-ios'
   # Pods for Interview100
 
   target 'Interview100Tests' do

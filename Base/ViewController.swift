@@ -9,15 +9,24 @@
 import UIKit
 public class ViewController: UIViewController {
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
+    public override func loadView() {
+        super.loadView()
         setupNavigation()
         setupView()
         makeConstraints()
-//        navigationController?.isNavigationBarHidden = 
+        
     }
     
-    public func setupNavigation() { } // NavigationController の設定
-    public func setupView() { } // 自身のviewの設定
+    // NavigationController の設定
+    public func setupNavigation() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
+    }
+    
+    // 自身のviewの設定
+    public func setupView() {
+        view.backgroundColor = UIColor.appColor(.white)
+    }
+    
     public func makeConstraints() { } // レイアウトに制約を付加
 }
